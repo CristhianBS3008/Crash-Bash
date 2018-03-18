@@ -1,7 +1,5 @@
 Instrucciones para crear el juego Crash Bash
 
-1. Crear el escenario 8x8
-
+1. Crear el escenario 7x7
 2. Crear el personaje con Sprites y moverlo con flechas de teclado
-
-3. Limitar movimiento y pintado de cuadrados
+3. Crear opciones de inicio del juego
