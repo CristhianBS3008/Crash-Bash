@@ -1,19 +1,26 @@
 # -*- coding: utf-8 -*-
 import pygame
 
-class Kate(pygame.sprite.Sprite):
-    def __init__(self, position, velocidad):
+class Personaje(pygame.sprite.Sprite):
+    def __init__(self, fileName, nRows, nCols, position, velocidad):
         self.velocidad = velocidad
-        self.sheet = pygame.image.load('kate.png')
+        self.sheet = pygame.image.load(fileName)
+        playerWidth = self.sheet.get_size()[0]/nCols
+        playerHeight = self.sheet.get_size()[1]/nRows
+        playerRects = []
+        for i in range(nRows):
+            for j in range(nCols):
+                playerRects.append((j*playerWidth,i*playerHeight, playerWidth, playerHeight))
+
         self.sheet.set_clip(pygame.Rect(0, 0, 52, 76))
         self.image = self.sheet.subsurface(self.sheet.get_clip())
         self.rect = self.image.get_rect()
         self.rect.topleft = position
         self.frame = 0
-        self.left_states = { 0: (0, 76, 52, 76), 1: (52, 76, 52, 76), 2: (156, 76, 52, 76) }
-        self.right_states = { 0: (0, 152, 52, 76), 1: (52, 152, 52, 76), 2: (156, 152, 52, 76) }
-        self.up_states = { 0: (0, 228, 52, 76), 1: (52, 228, 52, 76), 2: (156, 228, 52, 76) }
-        self.down_states = { 0: (0, 0, 52, 76), 1: (52, 0, 52, 76), 2: (156, 0, 52, 76) }
+        self.left_states = { 0: playerRects[4], 1: playerRects[5], 2: playerRects[7] }
+        self.right_states = { 0: playerRects[8], 1: playerRects[9], 2: playerRects[11] }
+        self.up_states = { 0: playerRects[12], 1: playerRects[13], 2: playerRects[15] }
+        self.down_states = { 0: playerRects[0], 1: playerRects[1], 2: playerRects[3] }
 
     def get_frame(self, frame_set):
         self.frame += 1
