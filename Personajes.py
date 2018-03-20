@@ -12,7 +12,7 @@ class Personaje(pygame.sprite.Sprite):
             for j in range(nCols):
                 playerRects.append((j*playerWidth,i*playerHeight, playerWidth, playerHeight))
 
-        self.sheet.set_clip(pygame.Rect(0, 0, 52, 76))
+        self.sheet.set_clip(playerRects[0])
         self.image = self.sheet.subsurface(self.sheet.get_clip())
         self.rect = self.image.get_rect()
         self.rect.topleft = position
